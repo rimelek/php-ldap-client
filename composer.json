@@ -1,0 +1,17 @@
+{
+  "name": "rimelek/ldap-client",
+  "description": "LDAP Client",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Takács Ákos",
+      "email": "rimelek@rimelek.hu"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Rimelek\\LDAPClient\\": "src/"
+    }
+  }
+}
