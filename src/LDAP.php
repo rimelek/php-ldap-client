@@ -202,11 +202,11 @@ class LDAP
     /**
      * Search
      *
-     * @param FilterOrConnection $filter Filters
+     * @param Filter|FilterGroup $filter Filters
      * @param Attr[] $attributes Attributes
      * @return Search
      */
-    public function search(FilterOrConnection $filter, $attributes = [])
+    public function search($filter, $attributes = [])
     {
         return new Search($this, $filter, $attributes);
     }

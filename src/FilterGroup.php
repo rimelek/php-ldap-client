@@ -2,11 +2,13 @@
 
 namespace Rimelek\LDAPClient;
 
-abstract class FilterGroup extends FilterOrConnection
+use TypeError;
+
+abstract class FilterGroup
 {
     /**
      *
-     * @var Filter|FilterGroup $filters
+     * @var Filter[]|FilterGroup[] $filters
      */
     protected $filters = array();
 
@@ -25,37 +27,27 @@ abstract class FilterGroup extends FilterOrConnection
     public function __construct(array $filters)
     {
         foreach ($filters as $filter) {
-            if (is_object($filter)) {
-                if ($filter instanceof Filter) {
-                    $this->addFilter($filter);
-                } else if ($filter instanceof FilterGroup) {
-                    $this->addFilterConnection($filter);
-                }
-            }
+            $this->addFilter($filter);
         }
     }
 
     /**
      * Add a new filter
      *
-     * @param Filter $filter
+     * @param Filter|FilterGroup $filter
      * @return $this
+     * @throws TypeError
      */
-    public function addFilter(Filter $filter)
+    public function addFilter($filter)
     {
+        if ( !$filter instanceof Filter and !$filter instanceof FilterGroup) {
+            throw new TypeError('First argument of '
+                . __METHOD__ . ' must be an instance of '
+                . Filter::class . ' or ' . FilterGroup::class . '. ' . (
+                    is_object($filter) ? get_class($filter) : gettype($filter)  . ' was given.'
+                ));
+        }
         $this->filters[] = $filter;
-        return $this;
-    }
-
-    /**
-     * Add a new filter connection
-     *
-     * @param FilterGroup $conn
-     * @return $this
-     */
-    public function addFilterConnection(FilterGroup $conn)
-    {
-        $this->filters[] = $conn;
         return $this;
     }
 

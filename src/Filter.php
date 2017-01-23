@@ -3,7 +3,7 @@
 namespace Rimelek\LDAPClient;
 
 
-class Filter extends FilterOrConnection
+class Filter
 {
 
     const OP_EQUALITY = '=';

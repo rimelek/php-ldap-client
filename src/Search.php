@@ -24,10 +24,10 @@ class Search extends Object
      *
      *
      * @param LDAP $ldap LDAP connection object
-     * @param FilterOrConnection $filter
+     * @param Filter|FilterGroup $filter
      * @param string[] $attributes key => value
      */
-    public function __construct(LDAP $ldap, FilterOrConnection $filter, $attributes)
+    public function __construct(LDAP $ldap, $filter, $attributes)
     {
         if (!is_resource($ldap->getConn())) {
             $ldap->connect()->bind();
