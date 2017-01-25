@@ -84,7 +84,7 @@ class Filter
      *
      * @param string $key Field name you want to search by
      * @param string $value Value/pattern you want to search
-     * @param string $op Operátor
+     * @param string $op Operator
      * @param bool $negation if true, the filter will be negated
      */
     public function __construct($key = null, $value = null, $op = null, $negation = false)
