@@ -13,19 +13,19 @@ Dependencies:
 First of all, you need an object that knows all the connection data and some options for the native LDAP extension.
 The options are not required.
 
-    ```php
-    use Rimelek\LDAPCLient\LDAP;
-    
-    $ldap = new LDAP();
-    $ldap->setServer('ldap.domain.tld');
-    $ldap->setPort(389);  // optional. Default: 389
-    
-    $ldap->setManagerDn('uid=' . $user->getUsername() . ',ou=people,dc=domain,dc=tld');
-    $ldap->setPassword($user->getPassword());
+```php
+use Rimelek\LDAPCLient\LDAP;
+   
+$ldap = new LDAP();
+$ldap->setServer('ldap.domain.tld');
+$ldap->setPort(389);  // optional. Default: 389
+   
+$ldap->setManagerDn('uid=' . $user->getUsername() . ',ou=people,dc=domain,dc=tld');
+$ldap->setPassword($user->getPassword());
 
-    $ldap->setScope(LDAP::SCOPE_SUB); // for search (*_ONE | *_BASE | *_SUB)
-    $ldap->setBaseDn('ou=people,dc=domain,dc=tld'); // for search
-    ```
+$ldap->setScope(LDAP::SCOPE_SUB); // for search (*_ONE | *_BASE | *_SUB)
+$ldap->setBaseDn('ou=people,dc=domain,dc=tld'); // for search
+```
     
 ### Create LDAP filter
 
@@ -38,13 +38,14 @@ An LDAP filter string follows this syntax:
 * You can also negate it: 
   ```(!((key1=value1)&(key2>=value2)))```
 
+
 When you need many filters it can be hard to write. Filters are objects here.
     
-    ```php
-    use Rimelek\LDAPClient\Filter;
-    use Rimelek\LDAPClient\OrFIlter;
-    use Rimelek\LDAPClient\AndFilter;
-    ```
+```php
+use Rimelek\LDAPClient\Filter;
+use Rimelek\LDAPClient\OrFIlter;
+use Rimelek\LDAPClient\AndFilter;
+```
     
 * Simplest filter: ```$filter = new Filter('key', 'value')```
 * Multiple filters:
@@ -79,18 +80,17 @@ Third argument of Filter is the operator. Here are all of them:
     
 ### Search
 
-    ```php
-    $result = $ldap->search($filter);
-    $entries = $result->getEntries();
-    
-    foreach ($entries as $entry) {
-        $attr = $entry->getAttribute();
-        echo $attr->getName() . '<br />';
-        foreach ($attr as $value) {
-            echo  ' - ' . $value . '<br />';   
-        }
+```php
+$result = $ldap->search($filter);
+$entries = $result->getEntries();
+   
+foreach ($entries as $entry) {
+    $attr = $entry->getAttribute();
+    echo $attr->getName() . '<br />';
+    foreach ($attr as $value) {
+        echo  ' - ' . $value . '<br />';   
     }
-    ```
-    
-    
+}
+```
+       
 More information coming soon.
