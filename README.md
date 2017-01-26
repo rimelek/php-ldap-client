@@ -31,13 +31,14 @@ $ldap->setBaseDn('ou=people,dc=domain,dc=tld'); // for search
 
 An LDAP filter string follows this syntax:
 
-* Simplest filter: ```(key=value)```
-* Multiple filters:
-  * or: ```(key1=value1)|(key2>=value)```
-  * and: ```(key1=value1)&(key2>=value2)```
-* You can also negate it: 
-  ```(!((key1=value1)&(key2>=value2)))```
-
+```
+Simplest filter: (key=value)
+Multiple filters:
+   or: (key1=value1)|(key2>=value)
+  and: (key1=value1)&(key2>=value2)
+You can also negate it: 
+       (!((key1=value1)&(key2>=value2)))
+```
 
 When you need many filters it can be hard to write. Filters are objects here.
     
@@ -46,31 +47,33 @@ use Rimelek\LDAPClient\Filter;
 use Rimelek\LDAPClient\OrFIlter;
 use Rimelek\LDAPClient\AndFilter;
 ```
-    
-* Simplest filter: ```$filter = new Filter('key', 'value')```
-* Multiple filters:
-  * or: 
-  ```php
+   
+```php
+/*Simplest filter:*/ $filter = new Filter('key', 'value');
+/*Multiple filters:*/
+  /*or:*/ 
+  
   $filter = new OrFilter([
       new Filter('key1', 'value1'),
       new Filter('key2', 'value2', Filter::OP_GREATER_THAN),
   ]);
-  ```
-  * and:
-    ```php
-    $filter = new AndFilter([
-        new Filter('key1', 'value1'),
-        new Filter('key2', 'value2', Filter::OP_GREATER_THAN),
-    ]);
-    ```
-* You can also negate it: 
+  
+  /*and:*/
+  
+  $filter = new AndFilter([
+      new Filter('key1', 'value1'),
+      new Filter('key2', 'value2', Filter::OP_GREATER_THAN),
+  ]);
+  
+/* You can also negate it: 
   For now, AndFilter and OrFilter cannot be negated. Until the solution you can do this:
-    ```php
-    $filter = new OrFilter([
-        new Filter('key1', 'value1', true),
-        new Filter('key2', 'value2', Filter::OP_GREATER_THAN, true),
-    ]);
-    ```
+  */
+  
+  $filter = new OrFilter([
+      new Filter('key1', 'value1', true),
+      new Filter('key2', 'value2', Filter::OP_GREATER_THAN, true),
+  ]);
+```
 Third argument of Filter is the operator. Here are all of them:
 
 * Filter::OP_EQUALITY (=)
