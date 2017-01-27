@@ -65,14 +65,12 @@ use Rimelek\LDAPClient\AndFilter;
       new Filter('key2', 'value2', Filter::OP_GREATER_THAN),
   ]);
   
-/* You can also negate it: 
-  For now, AndFilter and OrFilter cannot be negated. Until the solution you can do this:
-  */
+/* You can also negate it: */
   
-  $filter = new OrFilter([
-      new Filter('key1', 'value1', true),
-      new Filter('key2', 'value2', Filter::OP_GREATER_THAN, true),
-  ]);
+  $filter = new AndFilter([
+      new Filter('key1', 'value1'),
+      new Filter('key2', 'value2', Filter::OP_GREATER_THAN),
+  ], true);
 ```
 Third argument of Filter is the operator. Here are all of them:
 

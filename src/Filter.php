@@ -85,12 +85,12 @@ class Filter
      * @param string $key Field name you want to search by
      * @param string $value Value/pattern you want to search
      * @param string $op Operator
-     * @param bool $negation if true, the filter will be negated
+     * @param bool $negated if true, the filter will be negated
      */
-    public function __construct($key = null, $value = null, $op = null, $negation = false)
+    public function __construct($key = null, $value = null, $op = null, $negated = false)
     {
 
-        $v = ['key', 'value', 'op', 'negation'];
+        $v = ['key', 'value', 'op', 'negated'];
 
         foreach ($v as $_v) {
             if (is_null($$_v)) {
