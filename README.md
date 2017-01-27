@@ -6,6 +6,20 @@ Dependencies:
 * PHP >= 7.0
 * [ldap extension](http://php.net/manual/en/intro.ldap.php)
 
+## Install via composer
+
+**latest**
+
+```bash
+php composer.phar require rimelek/ldap-client:dev-master
+```
+
+**Latest tagged alpha:**
+
+```bash
+php composer.phar require rimelek/ldap-client:1.0.0-alpha.2
+```
+
 ## How to use
 
 ### Create an LDAP instance

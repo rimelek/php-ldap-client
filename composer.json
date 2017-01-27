@@ -1,7 +1,7 @@
 {
   "name": "rimelek/ldap-client",
   "description": "LDAP Client",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
     {
@@ -13,5 +13,9 @@
     "psr-4": {
       "Rimelek\\LDAPClient\\": "src/"
     }
+  },
+  "require": {
+    "php": ">=7.0",
+    "ext-ldap": "*"
   }
 }
