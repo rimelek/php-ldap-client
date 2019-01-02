@@ -205,6 +205,7 @@ class LDAP
      * @param Filter|FilterGroup $filter Filters
      * @param Attr[] $attributes Attributes
      * @return Search
+     * @throws BindException
      */
     public function search($filter, $attributes = [])
     {
@@ -446,6 +447,11 @@ class LDAP
      * Add a new entry
      *
      * @param Entry $entry
+     * @throws BindException
+     * @throws EntryExistsException
+     * @throws InvalidSyntaxException
+     * @throws ObjectClassViolationException
+     * @throws UndefinedAttributeTypeException
      */
     public function addEntry(Entry $entry)
     {
@@ -479,7 +485,8 @@ class LDAP
      */
     public static function throwExceptionWithError(array $error)
     {
-        if(!preg_match('~ldap_add\(\)[^:]*\:\s+(?P<type>.*)\:\s+(?P<msg>.*)$~i', strtolower($error['message']), $m)) {
+        if(!preg_match(/** @lang text */
+            '~ldap_add\(\)[^:]*\:\s+(?P<type>.*)\:\s+(?P<msg>.*)$~i', strtolower($error['message']), $m)) {
             return;
         }
         // TODO: Remove var_dump
@@ -508,7 +515,10 @@ class LDAP
     }
 
     /**
-     *
+     * @throws EntryExistsException
+     * @throws InvalidSyntaxException
+     * @throws ObjectClassViolationException
+     * @throws UndefinedAttributeTypeException
      */
     public static function throwExceptionWithLastError()
     {

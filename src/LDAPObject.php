@@ -4,7 +4,7 @@ namespace Rimelek\LDAPClient;
 /**
  *
  */
-class Object extends \ArrayIterator
+class LDAPObject extends \ArrayIterator
 {
     /**
      * LDAP connection object

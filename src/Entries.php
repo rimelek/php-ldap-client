@@ -2,7 +2,7 @@
 
 namespace Rimelek\LDAPClient;
 
-class Entries extends Object
+class Entries extends LDAPObject
 {
     /**
      * Search id
@@ -29,10 +29,10 @@ class Entries extends Object
     public function __construct(LDAP $ldap, $searchId) {
         $this->setLDAP($ldap);
         $this->searchId = $searchId;
-        $this->entries = ldap_get_entries($ldap->getConn(), $searchId);
-        unset($this->entries['count']);
+        $entries = ldap_get_entries($ldap->getConn(), $searchId);
+        unset($entries['count']);
 
-        foreach ($this->entries as $i => &$entry) {
+        foreach ($entries as $i => &$entry) {
             $this->entries[$i] = new Entry($ldap, $entry);
         }
         parent::__construct($this->entries);

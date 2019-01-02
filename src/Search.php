@@ -3,7 +3,7 @@
 namespace Rimelek\LDAPClient;
 
 
-class Search extends Object
+class Search extends LDAPObject
 {
 
     /**
@@ -26,6 +26,7 @@ class Search extends Object
      * @param LDAP $ldap LDAP connection object
      * @param Filter|FilterGroup $filter
      * @param string[] $attributes key => value
+     * @throws Exception\BindException
      */
     public function __construct(LDAP $ldap, $filter, $attributes)
     {

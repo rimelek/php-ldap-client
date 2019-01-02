@@ -2,7 +2,7 @@
 namespace Rimelek\LDAPClient;
 
 
-class Entry extends Object
+class Entry extends LDAPObject
 {
 
     /**

@@ -42,7 +42,7 @@ class Attr extends \ArrayIterator
 
     /**
      *
-     * @param string $values
+     * @param string|array $values
      * @return $this
      */
     public function setValues($values)
